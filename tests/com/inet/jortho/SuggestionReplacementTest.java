@@ -32,6 +32,6 @@ public class SuggestionReplacementTest extends TestCase {
 
         tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-        assertEquals(null, tok.nextInvalidWord());
+        assertNull(tok.nextInvalidWord());
     }
 }

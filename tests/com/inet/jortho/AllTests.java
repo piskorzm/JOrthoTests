@@ -34,9 +34,9 @@ public class AllTests {
 
     public static Test suite() {
         junit.framework.TestSuite suite = new junit.framework.TestSuite( "JOrtho Tests" );
-        suite.addTestSuite( DetectedErrorsUpdateTest.class );
         suite.addTestSuite( SuggestionReplacementTest.class );
         suite.addTestSuite( UserDirectoryTest.class );
+        suite.addTestSuite( HighlighterUpdateTest.class );
         return suite;
     }
 }

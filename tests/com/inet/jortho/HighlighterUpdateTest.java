@@ -5,7 +5,7 @@ import javax.swing.text.Highlighter;
 
 import junit.framework.TestCase;
 
-public class DetectedErrorsUpdateTest extends TestCase {
+public class HighlighterUpdateTest extends TestCase {
 
     static {
         AllTests.init();
