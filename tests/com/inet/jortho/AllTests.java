@@ -1,30 +1,8 @@
 package com.inet.jortho;
-/*
- *  JOrtho
- *
- *  Copyright (C) 2005-2009 by i-net software
- *
- *  This program is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU General Public License as 
- *  published by the Free Software Foundation; either version 2 of the
- *  License, or (at your option) any later version. 
- *
- *  This program is distributed in the hope that it will be useful, but
- *  WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- *  General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
- *  USA.
- *  
- * Created on 14.10.2008
- */
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
-import com.inet.jorthodictionaries.BookUtilsTest;
+import com.inet.jortho.SpellChecker;
 
 public class AllTests {
 
@@ -33,11 +11,12 @@ public class AllTests {
     /**
      * register the dictionaries
      */
-    static void init() {
+    public static void init() {
         if( !isInit ) {
             isInit = true;
             int threadCount = Thread.activeCount();
             SpellChecker.registerDictionaries( null, null );
+
 
             // wait until the dictionaries are loaded.
             for( int i = 0; i < 50; i++ ) {
@@ -54,11 +33,10 @@ public class AllTests {
     }
 
     public static Test suite() {
-        TestSuite suite = new TestSuite( "JOrtho Tests" );
-        suite.addTestSuite( EventTest.class );
-        suite.addTestSuite( MemoryTest.class );
-        suite.addTestSuite( UtilsTest.class );
-        suite.addTestSuite( BookUtilsTest.class );
+        junit.framework.TestSuite suite = new junit.framework.TestSuite( "JOrtho Tests" );
+        suite.addTestSuite( DetectedErrorsUpdateTest.class );
+        suite.addTestSuite( SuggestionReplacementTest.class );
+        suite.addTestSuite( UserDirectoryTest.class );
         return suite;
     }
 }

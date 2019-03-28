@@ -24,7 +24,7 @@ package com.inet.jortho;
 
 import junit.framework.TestCase;
 
-public class UtilsTest  extends TestCase{
+public class UtilsTest extends TestCase{
     
     public void testRemoveUnicodeQuotation(){
         assertSame( "abc", Utils.replaceUnicodeQuotation( "abc" ));

@@ -22,9 +22,9 @@
  */
 package com.inet.jorthodictionaries;
 
-import java.util.Properties;
-
 import junit.framework.TestCase;
+
+import java.util.Properties;
 
 public class BookUtilsTest  extends TestCase{
     

@@ -6,11 +6,10 @@
  */
 package com.inet.jortho;
 
-import java.awt.Toolkit;
+import junit.framework.TestCase;
 
 import javax.swing.*;
-
-import junit.framework.TestCase;
+import java.awt.*;
 
 public class MemoryTest extends TestCase {
     

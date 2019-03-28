@@ -22,9 +22,9 @@
  */
 package com.inet.jortho;
 
-import javax.swing.*;
-
 import junit.framework.TestCase;
+
+import javax.swing.*;
 
 public class EventTest extends TestCase {
 
