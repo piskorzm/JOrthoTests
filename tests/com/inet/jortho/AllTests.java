@@ -1,8 +1,6 @@
 package com.inet.jortho;
 
 import junit.framework.Test;
-import junit.framework.TestSuite;
-import com.inet.jortho.SpellChecker;
 
 public class AllTests {
 
@@ -34,9 +32,11 @@ public class AllTests {
 
     public static Test suite() {
         junit.framework.TestSuite suite = new junit.framework.TestSuite( "JOrtho Tests" );
-        suite.addTestSuite( SuggestionReplacementTest.class );
-        suite.addTestSuite( UserDirectoryTest.class );
+        suite.addTestSuite( WordsWithNumbersTest.class );
         suite.addTestSuite( HighlighterUpdateTest.class );
+        suite.addTestSuite( SuggestionReplacementTest.class );
+        suite.addTestSuite( UserDictionaryTest.class );
+        suite.addTestSuite( SpecialCharactersTest.class );
         return suite;
     }
 }

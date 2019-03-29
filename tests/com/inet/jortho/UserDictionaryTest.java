@@ -3,17 +3,20 @@ package com.inet.jortho;
 import junit.framework.TestCase;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 
-public class UserDirectoryTest extends TestCase {
+public class UserDictionaryTest extends TestCase {
 
     static {
         AllTests.init();
     }
 
-    public void testUserDirectory() throws Exception{
+    public void testUserDictionary() throws Exception{
         JEditorPane text = new JTextPane();
         SpellChecker.register(text);
         SpellChecker.enableAutoSpell(text, true);
+        SpellChecker.setUserDictionaryProvider( new FileUserDictionary() );
+
 
         String word = "errrr";
 
@@ -21,25 +24,30 @@ public class UserDirectoryTest extends TestCase {
 
         Tokenizer tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-        assertEquals("Expected one invalid word", word, tok.nextInvalidWord());
+        assertEquals("Expected an invalid word before adding to dictionary.", word, tok.nextInvalidWord());
+
+
         SpellChecker.getCurrentDictionary().add(word);
+       /* AddWordAction addWordAction = new AddWordAction(text, word);
+        ActionEvent actionEvent = new ActionEvent(ActionEvent.ACTION_PERFORMED, 0, "Add to dictionary");
+        addWordAction.actionPerformed(actionEvent);*/
 
         tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-        assertNull("No invalid words after adding to dictionary", tok.nextInvalidWord());
+        assertNull("No invalid words after adding to dictionary.", tok.nextInvalidWord());
 
         JMenu languagesMenu = SpellChecker.createLanguagesMenu();
+        assertTrue( "2 languages requied:" + languagesMenu.getItemCount(), languagesMenu.getItemCount() >= 2 );
         JRadioButtonMenuItem language_1 = (JRadioButtonMenuItem)languagesMenu.getItem( 0 );
         JRadioButtonMenuItem language_2 = (JRadioButtonMenuItem)languagesMenu.getItem( 1 );
 
         JRadioButtonMenuItem notSelected = language_1.isSelected() ? language_2 : language_1;
-
         notSelected.doClick(0);
 
-        Thread.sleep( 10 );
+        Thread.sleep( 2500 );
 
         tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-        assertNull("No invalid words after changing language", tok.nextInvalidWord());
+        assertEquals("Expect an invalid word after changing language.", word, tok.nextInvalidWord());
     }
 }
