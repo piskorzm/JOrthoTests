@@ -3,8 +3,6 @@ package com.inet.jortho;
 import junit.framework.TestCase;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-
 public class UserDictionaryTest extends TestCase {
 
     static {
@@ -17,14 +15,13 @@ public class UserDictionaryTest extends TestCase {
         SpellChecker.enableAutoSpell(text, true);
         SpellChecker.setUserDictionaryProvider( new FileUserDictionary() );
 
-
         String word = "errrr";
 
         text.setText(word);
 
         Tokenizer tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-        assertEquals("Expected an invalid word before adding to dictionary.", word, tok.nextInvalidWord());
+        assertEquals("Expected an invalid word before adding to dictionary", word, tok.nextInvalidWord());
 
 
         SpellChecker.getCurrentDictionary().add(word);
@@ -34,7 +31,7 @@ public class UserDictionaryTest extends TestCase {
 
         tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-        assertNull("No invalid words after adding to dictionary.", tok.nextInvalidWord());
+        assertNull("No invalid words after adding to dictionary", tok.nextInvalidWord());
 
         JMenu languagesMenu = SpellChecker.createLanguagesMenu();
         assertTrue( "2 languages requied:" + languagesMenu.getItemCount(), languagesMenu.getItemCount() >= 2 );
@@ -48,6 +45,6 @@ public class UserDictionaryTest extends TestCase {
 
         tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-        assertEquals("Expect an invalid word after changing language.", word, tok.nextInvalidWord());
+        assertEquals("Expect an invalid word after changing language", word, tok.nextInvalidWord());
     }
 }

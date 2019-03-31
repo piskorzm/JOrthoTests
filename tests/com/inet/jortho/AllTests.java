@@ -1,6 +1,7 @@
 package com.inet.jortho;
 
 import junit.framework.Test;
+import java.util.Locale;
 
 public class AllTests {
 
@@ -14,7 +15,7 @@ public class AllTests {
             isInit = true;
             int threadCount = Thread.activeCount();
             SpellChecker.registerDictionaries( null, null );
-
+            SpellChecker.setCurrentLocale(new Locale("en"));
 
             // wait until the dictionaries are loaded.
             for( int i = 0; i < 50; i++ ) {
@@ -32,6 +33,7 @@ public class AllTests {
 
     public static Test suite() {
         junit.framework.TestSuite suite = new junit.framework.TestSuite( "JOrtho Tests" );
+        suite.addTestSuite( UserDirectorySaveTest.class );
         suite.addTestSuite( WordsWithNumbersTest.class );
         suite.addTestSuite( HighlighterUpdateTest.class );
         suite.addTestSuite( SuggestionReplacementTest.class );

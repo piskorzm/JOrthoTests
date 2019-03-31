@@ -12,7 +12,7 @@ public class HighlighterUpdateTest extends TestCase {
     }
 
     public void testDetectedErrorsUpdate() throws InterruptedException {
-        int errors;
+        int highlightedWords;
         String sentence = "There is an errorr.";
         JEditorPane text_1 = new JTextPane();
         JEditorPane text_2 = new JTextPane();
@@ -26,16 +26,15 @@ public class HighlighterUpdateTest extends TestCase {
         Highlighter highlighter_1 = text_1.getHighlighter();
         Highlighter highlighter_2 = text_2.getHighlighter();
 
-        errors = highlighter_1.getHighlights().length;
+        highlightedWords = highlighter_1.getHighlights().length;
 
-        assertEquals("Expect one highlight before correction.",1, errors);
+        assertEquals("Expect one highlight before correction",1, highlightedWords);
 
         text_1.select(16,17);
         text_1.replaceSelection("");
 
-        errors = highlighter_1.getHighlights().length;
-
-        assertEquals("Expect no highlights after removing the error.",0, errors);
+        highlightedWords = highlighter_1.getHighlights().length;
+        assertEquals("Expect no highlights after removing the error",0, highlightedWords);
 
         SpellChecker.register(text_2);
         SpellChecker.enableAutoSpell(text_2, true);
@@ -43,7 +42,15 @@ public class HighlighterUpdateTest extends TestCase {
 
         Thread.sleep(15);
 
-        errors = highlighter_2.getHighlights().length;
-        assertEquals("Expect one highlight after registering new JText element.",1, errors);
+        highlightedWords = highlighter_2.getHighlights().length;
+        assertEquals("Expect one highlight after registering new JText element",1, highlightedWords);
+
+        SpellChecker.unregister(text_2);
+
+        Thread.sleep(15);
+
+        highlightedWords = highlighter_2.getHighlights().length;
+        assertEquals("Expect no highlights after unregistering JText element",0, highlightedWords);
+
     }
 }

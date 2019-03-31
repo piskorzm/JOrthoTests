@@ -3,8 +3,6 @@ package com.inet.jortho;
 import junit.framework.TestCase;
 
 import javax.swing.*;
-import javax.swing.text.Highlighter;
-import java.nio.file.DirectoryStream;
 
 public class WordsWithNumbersTest extends TestCase {
 
@@ -21,7 +19,6 @@ public class WordsWithNumbersTest extends TestCase {
         JEditorPane text = new JTextPane();
         SpellChecker.register(text);
         SpellChecker.enableAutoSpell(text, true);
-        SpellChecker.setUserDictionaryProvider( new FileUserDictionary() );
 
         text.setText(inputWithNumber_1);
         tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
