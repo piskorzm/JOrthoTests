@@ -3,7 +3,7 @@ package com.inet.jortho;
 import junit.framework.TestCase;
 import javax.swing.*;
 
-public class SuggestionReplacementTest extends TestCase {
+public class SuggestionsTest extends TestCase {
 
     static {
         AllTests.init();
@@ -20,13 +20,13 @@ public class SuggestionReplacementTest extends TestCase {
 
         Tokenizer tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-        assertEquals("Expect invalid word before using suggestion.", word, tok.nextInvalidWord());
+        assertEquals("Expect invalid word before using suggestion", word, tok.nextInvalidWord());
 
         String suggestion = SpellChecker.getCurrentDictionary().searchSuggestions(word).get(0).getWord();
         text.setText(suggestion);
 
         tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-        assertNull("Expect no invalid words after replacing it with a suggestion.", tok.nextInvalidWord());
+        assertNull("Expect no invalid words after replacing it with a suggestion", tok.nextInvalidWord());
     }
 }

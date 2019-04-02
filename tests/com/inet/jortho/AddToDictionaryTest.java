@@ -3,13 +3,13 @@ package com.inet.jortho;
 import junit.framework.TestCase;
 
 import javax.swing.*;
-public class UserDictionaryTest extends TestCase {
+public class AddToDictionaryTest extends TestCase {
 
     static {
         AllTests.init();
     }
 
-    public void testUserDictionary() throws Exception{
+    public void testAddToDictionary() throws Exception{
         JEditorPane text = new JTextPane();
         SpellChecker.register(text);
         SpellChecker.enableAutoSpell(text, true);
@@ -23,11 +23,7 @@ public class UserDictionaryTest extends TestCase {
 
         assertEquals("Expected an invalid word before adding to dictionary", word, tok.nextInvalidWord());
 
-
         SpellChecker.getCurrentDictionary().add(word);
-       /* AddWordAction addWordAction = new AddWordAction(text, word);
-        ActionEvent actionEvent = new ActionEvent(ActionEvent.ACTION_PERFORMED, 0, "Add to dictionary");
-        addWordAction.actionPerformed(actionEvent);*/
 
         tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 

@@ -33,12 +33,14 @@ public class AllTests {
 
     public static Test suite() {
         junit.framework.TestSuite suite = new junit.framework.TestSuite( "JOrtho Tests" );
-        suite.addTestSuite( UserDirectorySaveTest.class );
+
         suite.addTestSuite( WordsWithNumbersTest.class );
-        suite.addTestSuite( HighlighterUpdateTest.class );
-        suite.addTestSuite( SuggestionReplacementTest.class );
-        suite.addTestSuite( UserDictionaryTest.class );
         suite.addTestSuite( SpecialCharactersTest.class );
+        suite.addTestSuite( UrlAndEmailIgnoreTest.class );
+        suite.addTestSuite( SuggestionsTest.class );
+        suite.addTestSuite( HighlighterUpdateTest.class );
+        suite.addTestSuite( AddToDictionaryTest.class );
+        suite.addTestSuite( UserDirectorySaveTest.class );
         return suite;
     }
 }

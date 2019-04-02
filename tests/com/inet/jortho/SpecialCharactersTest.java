@@ -11,8 +11,8 @@ public class SpecialCharactersTest extends TestCase {
     }
 
     public void testWordsWithNumbers(){
-        char hyphenSign = '-';
-        String specialCharacters = "!@#$%^&*()+={}|:<>?/,;[]\\~._'\"`";
+        String partOfWord = "'`";
+        String separators = "!@#$%^&*()+={}|:<>?/,;[]\\~._-\"";
         String invalid_word_1 = "onne";
         String invalid_word_2 = "twwo";
         String input;
@@ -22,19 +22,21 @@ public class SpecialCharactersTest extends TestCase {
         JEditorPane text = new JTextPane();
         SpellChecker.register(text);
 
-        input = invalid_word_1 + hyphenSign + invalid_word_2;
-        text.setText(input);
-        tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
-
-        assertEquals("Expected whole input '" + input + "' to be recognized as an error" , input, tok.nextInvalidWord());
-
-        for (char character: specialCharacters.toCharArray()) {
+        for (char character: partOfWord.toCharArray()) {
             input = invalid_word_1 + character + invalid_word_2;
             text.setText(input);
             tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-            assertEquals("Expected the first invalid word with input '" + input + "' to be equal '" + invalid_word_1 + "'" , invalid_word_1, tok.nextInvalidWord());
-            assertEquals("Expected the second invalid word with input '" + input + "' to be equal '" + invalid_word_2 + "'" , invalid_word_2, tok.nextInvalidWord());
+            assertEquals("Expected input \"" + input + "\" to be recognized as an error" , input, tok.nextInvalidWord());
+        }
+
+        for (char character: separators.toCharArray()) {
+            input = invalid_word_1 + character + invalid_word_2;
+            text.setText(input);
+            tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
+
+            assertEquals("Expected the first invalid word with input \"" + input + "\" to be equal \"" + invalid_word_1 + "\"" , invalid_word_1, tok.nextInvalidWord());
+            assertEquals("Expected the second invalid word with input \"" + input + "\" to be equal \"" + invalid_word_2 + "\"" , invalid_word_2, tok.nextInvalidWord());
         }
     }
 }

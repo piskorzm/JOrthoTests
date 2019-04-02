@@ -11,28 +11,31 @@ public class WordsWithNumbersTest extends TestCase {
     }
 
     public void testWordsWithNumbers(){
-        String inputWithNumber_1 = "input7";
-        String inputWithNumber_2 = "inp7ut";
-        String inputWithNumber_3 = "7input";
+        String[] inputs = {"input7", "inp7ut", "7input", "7input7", "7inp7ut"};
         Tokenizer tok;
+        boolean firstIsInvalid = false;
 
         JEditorPane text = new JTextPane();
         SpellChecker.register(text);
         SpellChecker.enableAutoSpell(text, true);
 
-        text.setText(inputWithNumber_1);
+        text.setText(inputs[0]);
         tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-        assertEquals("Expected an invalid word with input '" + inputWithNumber_1 + "'", inputWithNumber_1, tok.nextInvalidWord());
+        if (tok.nextInvalidWord() == inputs[0]) {
+            firstIsInvalid = true;
+        }
 
-        text.setText(inputWithNumber_2);
-        tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
+        for (int i = 1; i < inputs.length; i++) {
+            text.setText(inputs[i]);
+            tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-        assertEquals("Expected an invalid word with input '" + inputWithNumber_2 + "'", inputWithNumber_2, tok.nextInvalidWord());
-
-        text.setText(inputWithNumber_3);
-        tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
-
-        assertEquals("Expected an invalid word with input '" + inputWithNumber_3 + "'", inputWithNumber_3, tok.nextInvalidWord());
+            if (firstIsInvalid) {
+                assertEquals("Expected an invalid word with input \"" + inputs[i] + "\"", inputs[i], tok.nextInvalidWord());
+            }
+            else {
+                assertNull("Expected no invalid words with input \"" + inputs[i] + "\"", tok.nextInvalidWord());
+            }
+        }
     }
 }
