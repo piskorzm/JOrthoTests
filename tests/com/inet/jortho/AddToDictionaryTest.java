@@ -37,10 +37,15 @@ public class AddToDictionaryTest extends TestCase {
         JRadioButtonMenuItem notSelected = language_1.isSelected() ? language_2 : language_1;
         notSelected.doClick(0);
 
-        Thread.sleep( 2500 );
+        Thread.sleep( 2000 );
 
         tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
         assertEquals("Expect an invalid word after changing language", word, tok.nextInvalidWord());
+
+        notSelected = language_1.isSelected() ? language_2 : language_1;
+        notSelected.doClick(0);
+
+        Thread.sleep( 1000 );
     }
 }

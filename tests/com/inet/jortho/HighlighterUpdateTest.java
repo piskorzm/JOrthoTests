@@ -40,14 +40,14 @@ public class HighlighterUpdateTest extends TestCase {
         SpellChecker.enableAutoSpell(text_2, true);
         AutoSpellChecker.refresh(text_2);
 
-        Thread.sleep(20);
+        Thread.sleep(50);
 
         highlightedWords = highlighter_2.getHighlights().length;
         assertEquals("Expect one highlight after registering new JText element",1, highlightedWords);
 
         SpellChecker.unregister(text_2);
 
-        Thread.sleep(20);
+        Thread.sleep(50);
 
         highlightedWords = highlighter_2.getHighlights().length;
         assertEquals("Expect no highlights after unregistering JText element",0, highlightedWords);

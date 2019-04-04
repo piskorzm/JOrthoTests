@@ -39,8 +39,8 @@ public class AllTests {
         suite.addTestSuite( UrlAndEmailIgnoreTest.class );
         suite.addTestSuite( SuggestionsTest.class );
         suite.addTestSuite( HighlighterUpdateTest.class );
-        suite.addTestSuite( AddToDictionaryTest.class );
         suite.addTestSuite( UserDirectorySaveTest.class );
+        suite.addTestSuite( AddToDictionaryTest.class );
         return suite;
     }
 }

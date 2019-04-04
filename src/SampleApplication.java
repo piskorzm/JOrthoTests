@@ -38,7 +38,7 @@ public class SampleApplication extends JFrame{
         // Build the test frame for the sample
         super("JOrtho Sample");
         JEditorPane text = new JTextPane();
-        text.setText( "This is a simppler textt with spellingg errors." );
+        text.setText( "texxt, worrd, text" );
         add( text );
         setSize(200, 160);
         setDefaultCloseOperation( EXIT_ON_CLOSE );

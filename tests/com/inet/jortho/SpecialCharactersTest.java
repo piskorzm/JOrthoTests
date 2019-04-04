@@ -23,11 +23,18 @@ public class SpecialCharactersTest extends TestCase {
         SpellChecker.register(text);
 
         for (char character: partOfWord.toCharArray()) {
+            String expected;
             input = invalid_word_1 + character + invalid_word_2;
+            if (character == '`') {
+                expected = invalid_word_1 + '\'' + invalid_word_2;
+            }
+            else {
+                expected = input;
+            }
             text.setText(input);
             tok = new Tokenizer(text, SpellChecker.getCurrentDictionary(), SpellChecker.getCurrentLocale(), SpellChecker.getOptions());
 
-            assertEquals("Expected input \"" + input + "\" to be recognized as an error" , input, tok.nextInvalidWord());
+            assertEquals("Expected input \"" + input + "\" to be recognized as an error" , expected, tok.nextInvalidWord());
         }
 
         for (char character: separators.toCharArray()) {
